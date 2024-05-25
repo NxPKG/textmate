@@ -1,0 +1,66 @@
+{
+	"name": "@nx-pkg/textmate",
+	"version": "0.4.5",
+	"description": "TextMate Grammars for NxPkg",
+	"license": "MIT",
+	"repository": "nxpkg/textmate",
+	"author": {
+		"name": "NxPkg",
+		"email": "iconmamundentist@gmail.com",
+		"url": "https://github.com/nxpkg"
+	},
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"scripts": {
+		"prepublishOnly": "npm run compile",
+		"test": "npm run prettier:check && xo && npm run compile && ava",
+		"prettier:check": "prettier --check \"grammars/**/*.json\" \"source/**/*.ts\"",
+		"compile": "tsc -p ."
+	},
+	"files": [
+		"grammars",
+		"dist",
+		"!dist/test"
+	],
+	"keywords": [
+		"textmate",
+		"tm",
+		"grammars",
+		"nxpkg",
+		"monaco",
+		"editor"
+	],
+	"devDependencies": {
+		"@ava/typescript": "^1.1.1",
+		"ava": "^3.15.0",
+		"ow": "^0.23.1",
+		"prettier": "^2.8.8",
+		"typescript": "^4.9.5",
+		"xo": "^0.38.2"
+	},
+	"ava": {
+		"files": [
+			"source/test/**/*",
+			"!source/test/helpers/**/*"
+		],
+		"typescript": {
+			"rewritePaths": {
+				"source/": "dist/"
+			}
+		}
+	},
+	"prettier": {
+		"printWidth": 120,
+		"singleQuote": true,
+		"useTabs": true,
+		"semi": true,
+		"bracketSpacing": true,
+		"trailingComma": "none"
+	},
+	"xo": {
+		"prettier": true,
+		"rules": {
+			"@typescript-eslint/no-var-requires": "off"
+		}
+	}
+}
